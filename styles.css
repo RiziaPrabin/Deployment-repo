@@ -415,56 +415,119 @@ body {
     animation: pulse 3s ease-in-out infinite;
 }
 
-.product-model {
+.svg-container {
     position: relative;
     display: flex;
-    gap: 2rem;
+    justify-content: center;
+    align-items: center;
     z-index: 2;
 }
 
-.slipper {
-    width: 120px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    border-radius: 60px 60px 20px 20px;
-    position: relative;
-    box-shadow: var(--shadow-xl);
-    transition: transform var(--transition-slow);
-}
-
-.slipper::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    right: 15px;
-    bottom: 25px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-    border-radius: 40px 40px 10px 10px;
-}
-
-.slipper::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 20px;
-    right: 20px;
-    height: 15px;
-    background: var(--gray-800);
-    border-radius: 0 0 40px 40px;
-    opacity: 0.3;
+.animated-slipper {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 10px 30px rgba(0, 120, 212, 0.3));
 }
 
 .slipper-left {
-    animation: float 3s ease-in-out infinite;
+    animation: floatLeft 4s ease-in-out infinite;
+    transform-origin: center;
 }
 
 .slipper-right {
-    animation: float 3s ease-in-out infinite 1.5s;
+    animation: floatRight 4s ease-in-out infinite 2s;
+    transform-origin: center;
 }
 
-.slipper:hover {
-    transform: translateY(-10px) rotate(5deg);
+.shadow-left {
+    animation: shadowLeft 4s ease-in-out infinite;
+}
+
+.shadow-right {
+    animation: shadowRight 4s ease-in-out infinite 2s;
+}
+
+.particles {
+    opacity: 0.8;
+}
+
+.wifi-signals {
+    opacity: 0.9;
+}
+
+.tech-dot:hover {
+    transform: scale(1.5);
+    transition: transform 0.3s ease;
+}
+
+/* SVG Animations */
+@keyframes floatLeft {
+    0%, 100% {
+        transform: translate(50px, 80px) translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translate(50px, 80px) translateY(-15px) rotate(2deg);
+    }
+    50% {
+        transform: translate(50px, 80px) translateY(-20px) rotate(0deg);
+    }
+    75% {
+        transform: translate(50px, 80px) translateY(-10px) rotate(-2deg);
+    }
+}
+
+@keyframes floatRight {
+    0%, 100% {
+        transform: translate(200px, 120px) translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translate(200px, 120px) translateY(-10px) rotate(-2deg);
+    }
+    50% {
+        transform: translate(200px, 120px) translateY(-25px) rotate(0deg);
+    }
+    75% {
+        transform: translate(200px, 120px) translateY(-15px) rotate(2deg);
+    }
+}
+
+@keyframes shadowLeft {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.1;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes shadowRight {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.1;
+        transform: scale(0.8);
+    }
+}
+
+/* Hover effects for the entire SVG */
+.animated-slipper:hover .slipper-left {
+    animation-duration: 2s;
+}
+
+.animated-slipper:hover .slipper-right {
+    animation-duration: 2s;
+}
+
+.animated-slipper:hover .particles circle {
+    animation-duration: 2s;
+}
+
+.animated-slipper:hover .wifi-signals path {
+    animation-duration: 1s;
 }
 
 .scroll-indicator {
@@ -1260,6 +1323,11 @@ body {
         justify-content: center;
     }
     
+    .animated-slipper {
+        width: 300px;
+        height: 225px;
+    }
+    
     .features-grid {
         grid-template-columns: 1fr;
     }
@@ -1315,5 +1383,10 @@ body {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+    }
+    
+    .animated-slipper {
+        width: 250px;
+        height: 187px;
     }
 }

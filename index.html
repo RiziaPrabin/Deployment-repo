@@ -73,9 +73,127 @@
             <div class="hero-image">
                 <div class="product-showcase">
                     <div class="product-glow"></div>
-                    <div class="product-model">
-                        <div class="slipper slipper-left"></div>
-                        <div class="slipper slipper-right"></div>
+                    <div class="svg-container">
+                        <svg class="animated-slipper" width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background glow effect -->
+                            <defs>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                    <feMerge> 
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                                <linearGradient id="slipperGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#0078d4;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#106ebe;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#40e0ff;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:rgba(255,255,255,0.1);stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="soleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#2d3748;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#1a202c;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Left Slipper -->
+                            <g class="slipper-left" transform="translate(50, 80)">
+                                <!-- Shadow -->
+                                <ellipse cx="75" cy="120" rx="85" ry="15" fill="rgba(0,0,0,0.2)" class="shadow-left"/>
+                                
+                                <!-- Sole -->
+                                <path d="M 20 100 Q 10 80 25 60 Q 40 45 70 45 Q 110 45 130 60 Q 145 75 140 90 Q 135 105 120 110 L 30 110 Q 15 105 20 100 Z" 
+                                      fill="url(#soleGradient)" class="sole-left"/>
+                                
+                                <!-- Main body -->
+                                <path d="M 25 95 Q 15 75 30 55 Q 45 40 75 40 Q 115 40 135 55 Q 150 70 145 85 Q 140 100 125 105 L 35 105 Q 20 100 25 95 Z" 
+                                      fill="url(#slipperGradient)" filter="url(#glow)" class="body-left"/>
+                                
+                                <!-- Highlight -->
+                                <path d="M 35 85 Q 30 70 40 60 Q 50 50 70 50 Q 95 50 110 60 Q 120 70 118 80 Q 115 90 105 92 L 45 92 Q 32 88 35 85 Z" 
+                                      fill="url(#highlightGradient)" class="highlight-left"/>
+                                
+                                <!-- Tech details -->
+                                <circle cx="60" cy="70" r="3" fill="rgba(255,255,255,0.8)" class="tech-dot">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="80" cy="65" r="2" fill="rgba(255,255,255,0.6)" class="tech-dot">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="100" cy="72" r="2.5" fill="rgba(255,255,255,0.7)" class="tech-dot">
+                                    <animate attributeName="opacity" values="0.4;1;0.4" dur="1.8s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                            
+                            <!-- Right Slipper -->
+                            <g class="slipper-right" transform="translate(200, 120)">
+                                <!-- Shadow -->
+                                <ellipse cx="75" cy="120" rx="85" ry="15" fill="rgba(0,0,0,0.2)" class="shadow-right"/>
+                                
+                                <!-- Sole -->
+                                <path d="M 20 100 Q 10 80 25 60 Q 40 45 70 45 Q 110 45 130 60 Q 145 75 140 90 Q 135 105 120 110 L 30 110 Q 15 105 20 100 Z" 
+                                      fill="url(#soleGradient)" class="sole-right"/>
+                                
+                                <!-- Main body -->
+                                <path d="M 25 95 Q 15 75 30 55 Q 45 40 75 40 Q 115 40 135 55 Q 150 70 145 85 Q 140 100 125 105 L 35 105 Q 20 100 25 95 Z" 
+                                      fill="url(#slipperGradient)" filter="url(#glow)" class="body-right"/>
+                                
+                                <!-- Highlight -->
+                                <path d="M 35 85 Q 30 70 40 60 Q 50 50 70 50 Q 95 50 110 60 Q 120 70 118 80 Q 115 90 105 92 L 45 92 Q 32 88 35 85 Z" 
+                                      fill="url(#highlightGradient)" class="highlight-right"/>
+                                
+                                <!-- Tech details -->
+                                <circle cx="60" cy="70" r="3" fill="rgba(255,255,255,0.8)" class="tech-dot">
+                                    <animate attributeName="opacity" values="0.3;1;0.3" dur="2.2s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="80" cy="65" r="2" fill="rgba(255,255,255,0.6)" class="tech-dot">
+                                    <animate attributeName="opacity" values="0.5;1;0.5" dur="2.7s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="100" cy="72" r="2.5" fill="rgba(255,255,255,0.7)" class="tech-dot">
+                                    <animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                            
+                            <!-- Floating particles -->
+                            <g class="particles">
+                                <circle cx="80" cy="50" r="2" fill="#40e0ff" opacity="0.6">
+                                    <animateTransform attributeName="transform" type="translate" 
+                                                    values="0,0; 10,-20; 0,0" dur="4s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="320" cy="80" r="1.5" fill="#0078d4" opacity="0.7">
+                                    <animateTransform attributeName="transform" type="translate" 
+                                                    values="0,0; -15,-25; 0,0" dur="5s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0;1;0" dur="5s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="150" cy="40" r="1" fill="#6c5ce7" opacity="0.5">
+                                    <animateTransform attributeName="transform" type="translate" 
+                                                    values="0,0; 8,-30; 0,0" dur="6s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0;1;0" dur="6s" repeatCount="indefinite"/>
+                                </circle>
+                                <circle cx="280" cy="45" r="1.8" fill="#fd79a8" opacity="0.6">
+                                    <animateTransform attributeName="transform" type="translate" 
+                                                    values="0,0; 12,-22; 0,0" dur="3.5s" repeatCount="indefinite"/>
+                                    <animate attributeName="opacity" values="0;1;0" dur="3.5s" repeatCount="indefinite"/>
+                                </circle>
+                            </g>
+                            
+                            <!-- WiFi signals -->
+                            <g class="wifi-signals" transform="translate(200, 60)">
+                                <path d="M -20 0 Q 0 -15 20 0" stroke="#40e0ff" stroke-width="2" fill="none" opacity="0.7">
+                                    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+                                </path>
+                                <path d="M -30 5 Q 0 -25 30 5" stroke="#40e0ff" stroke-width="2" fill="none" opacity="0.5">
+                                    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                </path>
+                                <path d="M -40 10 Q 0 -35 40 10" stroke="#40e0ff" stroke-width="2" fill="none" opacity="0.3">
+                                    <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                </path>
+                            </g>
+                        </svg>
                     </div>
                 </div>
             </div>
