@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Trash2, Plus, Minus, ShoppingBag, CreditCard, Truck, Shield, ArrowLeft } from 'lucide-react';
+import { Trash2, Plus, Minus, ShoppingBag, CreditCard, Ship, Shield, ArrowLeft } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 const CartPage: React.FC = () => {
@@ -40,7 +40,7 @@ const CartPage: React.FC = () => {
     
     // Simulate API call
     setTimeout(() => {
-      alert('Order placed successfully! Thank you for your purchase.');
+      alert('🏴‍☠️ Arrr! Yer order be placed successfully! The treasure will be delivered by our finest pirate ship! 🚢');
       clearCart();
       setIsCheckingOut(false);
       setShowCheckoutForm(false);
@@ -54,20 +54,21 @@ const CartPage: React.FC = () => {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen pirate-bg py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <ShoppingBag className="w-24 h-24 text-gray-400 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h2>
-            <p className="text-xl text-gray-600 mb-8">
-              Looks like you haven't added anything to your cart yet.
+          <div className="text-center card-treasure p-12">
+            <div className="text-6xl mb-6 skull-icon">💀</div>
+            <ShoppingBag className="w-24 h-24 text-pirate-gold mx-auto mb-6 animate-treasure-glow" />
+            <h2 className="text-3xl font-bold pirate-title mb-4">Yer Loot Bag Be Empty!</h2>
+            <p className="text-xl text-pirate-cream mb-8">
+              Arrr! Ye haven't plundered any treasures yet, matey! Time to start lootin'!
             </p>
             <Link 
               to="/"
-              className="btn-primary inline-flex items-center"
+              className="btn-treasure inline-flex items-center"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
-              Continue Shopping
+              ⚓ Return to Port & Start Plunderin'!
             </Link>
           </div>
         </div>
@@ -76,47 +77,47 @@ const CartPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen pirate-bg py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>
-          <p className="text-gray-600 mt-2">{getTotalItems()} items in your cart</p>
+        <div className="mb-8 text-center">
+          <h1 className="text-4xl font-bold pirate-title mb-2">🏴‍☠️ Yer Loot Bag 🏴‍☠️</h1>
+          <p className="text-pirate-gold text-xl">{getTotalItems()} treasures ready for plunderin'!</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
-              <div key={item.product.id} className="bg-white rounded-xl p-6 shadow-sm">
+              <div key={item.product.id} className="card-treasure p-6">
                 <div className="flex items-center space-x-4">
                   <Link to={`/product/${item.product.id}`}>
                     <img 
                       src={item.product.images[0]} 
                       alt={item.product.name}
-                      className="w-20 h-20 object-cover rounded-lg"
+                      className="w-20 h-20 object-cover rounded-lg border-2 border-pirate-gold"
                     />
                   </Link>
                   
                   <div className="flex-1">
                     <Link 
                       to={`/product/${item.product.id}`}
-                      className="text-lg font-semibold text-gray-900 hover:text-primary-600 transition-colors duration-200"
+                      className="text-lg font-bold text-pirate-gold hover:text-pirate-cream transition-colors duration-200"
                     >
                       {item.product.name}
                     </Link>
-                    <p className="text-gray-600 text-sm mt-1">{item.product.category}</p>
+                    <p className="text-pirate-cream/80 text-sm mt-1">⚔️ {item.product.category}</p>
                     <div className="flex items-center space-x-4 mt-3">
-                      <div className="flex items-center border border-gray-300 rounded-lg">
+                      <div className="flex items-center border-2 border-pirate-gold rounded-lg bg-pirate-black">
                         <button
                           onClick={() => handleQuantityChange(item.product.id, item.quantity - 1)}
-                          className="p-1 hover:bg-gray-50 transition-colors duration-200"
+                          className="p-1 hover:bg-pirate-gold hover:text-pirate-black transition-colors duration-200 text-pirate-gold"
                         >
                           <Minus className="w-4 h-4" />
                         </button>
-                        <span className="px-3 py-1 font-medium">{item.quantity}</span>
+                        <span className="px-3 py-1 font-bold text-pirate-gold">{item.quantity}</span>
                         <button
                           onClick={() => handleQuantityChange(item.product.id, item.quantity + 1)}
-                          className="p-1 hover:bg-gray-50 transition-colors duration-200"
+                          className="p-1 hover:bg-pirate-gold hover:text-pirate-black transition-colors duration-200 text-pirate-gold"
                         >
                           <Plus className="w-4 h-4" />
                         </button>
@@ -124,7 +125,8 @@ const CartPage: React.FC = () => {
                       
                       <button
                         onClick={() => removeFromCart(item.product.id)}
-                        className="text-red-600 hover:text-red-700 transition-colors duration-200 p-1"
+                        className="text-pirate-red hover:text-pirate-cream transition-colors duration-200 p-1 font-bold"
+                        title="Remove from loot bag"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -132,10 +134,10 @@ const CartPage: React.FC = () => {
                   </div>
                   
                   <div className="text-right">
-                    <div className="text-lg font-bold text-gray-900">
+                    <div className="text-lg font-bold text-pirate-gold">
                       ${(item.product.price * item.quantity).toFixed(2)}
                     </div>
-                    <div className="text-sm text-gray-500">
+                    <div className="text-sm text-pirate-cream/80">
                       ${item.product.price} each
                     </div>
                   </div>
@@ -146,74 +148,74 @@ const CartPage: React.FC = () => {
 
           {/* Order Summary */}
           <div className="space-y-6">
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Order Summary</h2>
+            <div className="card-treasure p-6">
+              <h2 className="text-xl font-bold pirate-title mb-4">💰 Treasure Summary</h2>
               
               <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal ({getTotalItems()} items)</span>
-                  <span className="font-medium">${subtotal.toFixed(2)}</span>
+                <div className="flex justify-between text-pirate-cream">
+                  <span>Subtotal ({getTotalItems()} treasures)</span>
+                  <span className="font-bold">${subtotal.toFixed(2)}</span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium">
-                    {shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}
+                <div className="flex justify-between text-pirate-cream">
+                  <span>🚢 Ship Delivery</span>
+                  <span className="font-bold">
+                    {shipping === 0 ? '⚡ Free!' : `$${shipping.toFixed(2)}`}
                   </span>
                 </div>
                 
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Tax</span>
-                  <span className="font-medium">${tax.toFixed(2)}</span>
+                <div className="flex justify-between text-pirate-cream">
+                  <span>⚖️ Pirate Tax</span>
+                  <span className="font-bold">${tax.toFixed(2)}</span>
                 </div>
                 
-                <div className="border-t border-gray-200 pt-3">
+                <div className="border-t-2 border-pirate-gold pt-3">
                   <div className="flex justify-between">
-                    <span className="text-lg font-bold">Total</span>
-                    <span className="text-lg font-bold">${total.toFixed(2)}</span>
+                    <span className="text-lg font-bold text-pirate-gold">Total Doubloons</span>
+                    <span className="text-lg font-bold text-pirate-gold">${total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
 
               <button
                 onClick={() => setShowCheckoutForm(true)}
-                className="w-full btn-primary mt-6 flex items-center justify-center"
+                className="w-full btn-treasure mt-6 flex items-center justify-center"
               >
                 <CreditCard className="w-5 h-5 mr-2" />
-                Proceed to Checkout
+                🏴‍☠️ Proceed to Checkout
               </button>
 
               <div className="mt-6 space-y-3">
-                <div className="flex items-center text-sm text-gray-600">
-                  <Truck className="w-4 h-4 mr-2 text-primary-600" />
-                  {shipping === 0 ? 'Free shipping applied' : 'Free shipping on orders over $100'}
+                <div className="flex items-center text-sm text-pirate-cream">
+                  <Ship className="w-4 h-4 mr-2 text-pirate-gold" />
+                  {shipping === 0 ? '🚢 Free ship delivery applied!' : '🚢 Free ship delivery on orders over 100 doubloons!'}
                 </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <Shield className="w-4 h-4 mr-2 text-primary-600" />
-                  Secure checkout with SSL encryption
+                <div className="flex items-center text-sm text-pirate-cream">
+                  <Shield className="w-4 h-4 mr-2 text-pirate-gold" />
+                  🛡️ Secure checkout with cursed encryption
                 </div>
               </div>
             </div>
 
             <Link 
               to="/"
-              className="block text-center text-primary-600 hover:text-primary-700 font-medium transition-colors duration-200"
+              className="block text-center text-pirate-gold hover:text-pirate-cream font-bold transition-colors duration-200"
             >
-              ← Continue Shopping
+              ← Continue Plunderin'
             </Link>
           </div>
         </div>
 
         {/* Checkout Modal */}
         {showCheckoutForm && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-pirate-dark-black bg-opacity-90 flex items-center justify-center p-4 z-50">
+            <div className="card-treasure max-w-2xl w-full max-h-[90vh] overflow-y-auto">
               <div className="p-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-900">Checkout</h2>
+                  <h2 className="text-2xl font-bold pirate-title">🏴‍☠️ Checkout</h2>
                   <button
                     onClick={() => setShowCheckoutForm(false)}
-                    className="text-gray-400 hover:text-gray-600"
+                    className="text-pirate-gold hover:text-pirate-cream text-2xl font-bold"
                   >
                     ✕
                   </button>
@@ -222,7 +224,7 @@ const CartPage: React.FC = () => {
                 <form onSubmit={handleCheckout} className="space-y-6">
                   {/* Contact Information */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
+                    <h3 className="text-lg font-bold mb-4 text-pirate-gold">📧 Contact Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <input
                         type="email"
@@ -257,12 +259,12 @@ const CartPage: React.FC = () => {
 
                   {/* Shipping Address */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-4">Shipping Address</h3>
+                    <h3 className="text-lg font-bold mb-4 text-pirate-gold">🗺️ Treasure Delivery Address</h3>
                     <div className="space-y-4">
                       <input
                         type="text"
                         name="address"
-                        placeholder="Street address"
+                        placeholder="Street address (or island coordinates)"
                         required
                         value={formData.address}
                         onChange={handleInputChange}
@@ -272,7 +274,7 @@ const CartPage: React.FC = () => {
                         <input
                           type="text"
                           name="city"
-                          placeholder="City"
+                          placeholder="City (or port)"
                           required
                           value={formData.city}
                           onChange={handleInputChange}
@@ -293,12 +295,12 @@ const CartPage: React.FC = () => {
 
                   {/* Payment Information */}
                   <div>
-                    <h3 className="text-lg font-semibold mb-4">Payment Information</h3>
+                    <h3 className="text-lg font-bold mb-4 text-pirate-gold">💳 Payment Information</h3>
                     <div className="space-y-4">
                       <input
                         type="text"
                         name="cardNumber"
-                        placeholder="Card number"
+                        placeholder="Card number (or treasure map coordinates)"
                         required
                         value={formData.cardNumber}
                         onChange={handleInputChange}
@@ -328,23 +330,23 @@ const CartPage: React.FC = () => {
                   </div>
 
                   {/* Order Summary */}
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <h3 className="font-semibold mb-3">Order Summary</h3>
-                    <div className="space-y-2 text-sm">
+                  <div className="treasure-bg rounded-lg p-4 border-2 border-pirate-gold">
+                    <h3 className="font-bold mb-3 text-pirate-gold">💰 Final Treasure Count</h3>
+                    <div className="space-y-2 text-sm text-pirate-cream">
                       <div className="flex justify-between">
                         <span>Subtotal</span>
                         <span>${subtotal.toFixed(2)}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Shipping</span>
-                        <span>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+                        <span>Ship Delivery</span>
+                        <span>{shipping === 0 ? 'Free!' : `$${shipping.toFixed(2)}`}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Tax</span>
+                        <span>Pirate Tax</span>
                         <span>${tax.toFixed(2)}</span>
                       </div>
-                      <div className="border-t border-gray-300 pt-2 flex justify-between font-semibold">
-                        <span>Total</span>
+                      <div className="border-t-2 border-pirate-gold pt-2 flex justify-between font-bold text-pirate-gold">
+                        <span>Total Doubloons</span>
                         <span>${total.toFixed(2)}</span>
                       </div>
                     </div>
@@ -361,9 +363,9 @@ const CartPage: React.FC = () => {
                     <button
                       type="submit"
                       disabled={isCheckingOut}
-                      className="flex-1 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 btn-treasure disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isCheckingOut ? 'Processing...' : `Place Order - $${total.toFixed(2)}`}
+                      {isCheckingOut ? '🏴‍☠️ Processing...' : `🏴‍☠️ Place Order - $${total.toFixed(2)}`}
                     </button>
                   </div>
                 </form>

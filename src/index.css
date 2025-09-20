@@ -1,21 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-pirate-dark-black text-pirate-cream;
+  }
+}
+
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply bg-pirate-gold hover:bg-pirate-dark-gold text-pirate-black font-bold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pirate-gold focus:ring-offset-2 focus:ring-offset-pirate-black shadow-lg hover:shadow-xl transform hover:scale-105;
   }
   
   .btn-secondary {
-    @apply bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium py-3 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+    @apply bg-pirate-red hover:bg-pirate-dark-red text-pirate-cream font-bold py-3 px-6 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-pirate-red focus:ring-offset-2 focus:ring-offset-pirate-black shadow-lg hover:shadow-xl transform hover:scale-105;
+  }
+  
+  .btn-treasure {
+    @apply bg-gradient-to-r from-pirate-gold to-pirate-dark-gold text-pirate-black font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:scale-105 animate-treasure-glow;
   }
   
   .card {
-    @apply bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden transition-shadow duration-200 hover:shadow-md;
+    @apply bg-pirate-black rounded-xl shadow-2xl border-2 border-pirate-gold overflow-hidden transition-all duration-300 hover:shadow-pirate-gold/20 hover:border-pirate-gold hover:scale-105;
+  }
+  
+  .card-treasure {
+    @apply bg-gradient-to-br from-pirate-brown to-pirate-dark-brown rounded-xl shadow-2xl border-2 border-pirate-gold overflow-hidden transition-all duration-300 hover:shadow-pirate-gold/30 hover:border-pirate-gold hover:scale-105 animate-treasure-glow;
   }
   
   .input-field {
-    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200;
+    @apply w-full px-4 py-3 border-2 border-pirate-gold rounded-lg focus:ring-2 focus:ring-pirate-gold focus:border-pirate-gold transition-colors duration-200 bg-pirate-black text-pirate-cream placeholder-pirate-cream/60;
+  }
+  
+  .pirate-title {
+    @apply font-pirate text-pirate-gold drop-shadow-lg;
+  }
+  
+  .treasure-text {
+    @apply text-pirate-gold font-bold animate-treasure-glow;
+  }
+  
+  .skull-icon {
+    @apply animate-skull-bounce;
+  }
+  
+  .pirate-bg {
+    @apply bg-gradient-to-br from-pirate-dark-black via-pirate-black to-pirate-dark-brown;
+  }
+  
+  .treasure-bg {
+    @apply bg-gradient-to-r from-pirate-gold/10 to-pirate-dark-gold/10 backdrop-blur-sm;
   }
 }

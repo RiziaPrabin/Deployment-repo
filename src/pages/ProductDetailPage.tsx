@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Star, ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw, ChevronLeft, ChevronRight, Plus, Minus } from 'lucide-react';
+import { Star, ShoppingCart, Heart, Share2, Ship, Shield, RotateCcw, ChevronLeft, ChevronRight, Plus, Minus } from 'lucide-react';
 import { products } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { Product } from '../types';
@@ -21,11 +21,12 @@ const ProductDetailPage: React.FC = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Product not found</h2>
-          <Link to="/" className="text-primary-600 hover:text-primary-700">
-            Return to homepage
+      <div className="min-h-screen pirate-bg flex items-center justify-center">
+        <div className="text-center card-treasure p-8">
+          <h2 className="text-2xl font-bold pirate-title mb-4">💀 Treasure Not Found! 💀</h2>
+          <p className="text-pirate-cream mb-4">This treasure has been plundered already, matey!</p>
+          <Link to="/" className="btn-treasure">
+            ⚓ Return to Port
           </Link>
         </div>
       </div>
@@ -53,16 +54,16 @@ const ProductDetailPage: React.FC = () => {
   ).slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen pirate-bg">
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-pirate-black border-b-2 border-pirate-gold">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <nav className="flex items-center space-x-2 text-sm">
-            <Link to="/" className="text-gray-500 hover:text-primary-600">Home</Link>
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-500">{product.category}</span>
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-900 font-medium">{product.name}</span>
+            <Link to="/" className="text-pirate-cream hover:text-pirate-gold">⚓ Port</Link>
+            <span className="text-pirate-gold">/</span>
+            <span className="text-pirate-cream">{product.category}</span>
+            <span className="text-pirate-gold">/</span>
+            <span className="text-pirate-gold font-bold">{product.name}</span>
           </nav>
         </div>
       </div>
@@ -71,7 +72,7 @@ const ProductDetailPage: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Images */}
           <div className="space-y-4">
-            <div className="relative bg-white rounded-xl overflow-hidden shadow-sm">
+            <div className="relative card-treasure overflow-hidden">
               <img 
                 src={product.images[selectedImageIndex]} 
                 alt={product.name}
@@ -82,13 +83,13 @@ const ProductDetailPage: React.FC = () => {
                 <>
                   <button 
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-200"
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-pirate-gold text-pirate-black p-2 rounded-full shadow-lg hover:bg-pirate-dark-gold transition-colors duration-200"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
                   <button 
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-200"
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-pirate-gold text-pirate-black p-2 rounded-full shadow-lg hover:bg-pirate-dark-gold transition-colors duration-200"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
@@ -96,8 +97,8 @@ const ProductDetailPage: React.FC = () => {
               )}
 
               {product.originalPrice && (
-                <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-md font-medium">
-                  Sale
+                <div className="absolute top-4 left-4 bg-pirate-red text-pirate-cream px-3 py-1 rounded-md font-bold animate-treasure-glow">
+                  🔥 PLUNDER SALE! 🔥
                 </div>
               )}
             </div>
@@ -111,8 +112,8 @@ const ProductDetailPage: React.FC = () => {
                     onClick={() => setSelectedImageIndex(index)}
                     className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors duration-200 ${
                       selectedImageIndex === index 
-                        ? 'border-primary-600' 
-                        : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-pirate-gold animate-treasure-glow' 
+                        : 'border-pirate-cream hover:border-pirate-gold'
                     }`}
                   >
                     <img 
@@ -127,36 +128,36 @@ const ProductDetailPage: React.FC = () => {
           </div>
 
           {/* Product Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 card-treasure p-8">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
+              <h1 className="text-3xl font-bold text-pirate-gold mb-2 pirate-title">{product.name}</h1>
               
               <div className="flex items-center space-x-4 mb-4">
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) => (
                     <Star 
                       key={i} 
-                      className={`w-5 h-5 ${i < Math.floor(product.rating) ? 'text-yellow-400 fill-current' : 'text-gray-300'}`} 
+                      className={`w-5 h-5 ${i < Math.floor(product.rating) ? 'text-pirate-gold fill-current' : 'text-pirate-cream/30'}`} 
                     />
                   ))}
-                  <span className="ml-2 text-gray-600">({product.reviews} reviews)</span>
+                  <span className="ml-2 text-pirate-cream">({product.reviews} pirate reviews)</span>
                 </div>
-                <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                <span className={`px-3 py-1 rounded-full text-sm font-bold ${
                   product.inStock 
-                    ? 'text-green-700 bg-green-100' 
-                    : 'text-red-700 bg-red-100'
+                    ? 'text-pirate-black bg-pirate-gold animate-treasure-glow' 
+                    : 'text-pirate-cream bg-pirate-red'
                 }`}>
-                  {product.inStock ? 'In Stock' : 'Out of Stock'}
+                  {product.inStock ? '⚡ Ready to Plunder!' : '💀 Already Plundered!'}
                 </span>
               </div>
 
               <div className="flex items-center space-x-4 mb-6">
-                <span className="text-3xl font-bold text-gray-900">${product.price}</span>
+                <span className="text-3xl font-bold text-pirate-gold">${product.price}</span>
                 {product.originalPrice && (
                   <>
-                    <span className="text-2xl text-gray-500 line-through">${product.originalPrice}</span>
-                    <span className="bg-red-100 text-red-800 px-2 py-1 rounded-md text-sm font-medium">
-                      {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF
+                    <span className="text-2xl text-pirate-cream/60 line-through">${product.originalPrice}</span>
+                    <span className="bg-pirate-red text-pirate-cream px-2 py-1 rounded-md text-sm font-bold animate-treasure-glow">
+                      🔥 {Math.round((1 - product.price / product.originalPrice) * 100)}% OFF! 🔥
                     </span>
                   </>
                 )}
@@ -164,23 +165,23 @@ const ProductDetailPage: React.FC = () => {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-3">Description</h3>
-              <p className="text-gray-600 leading-relaxed">{product.description}</p>
+              <h3 className="text-lg font-bold mb-3 text-pirate-gold">📜 Treasure Description</h3>
+              <p className="text-pirate-cream leading-relaxed">{product.description}</p>
             </div>
 
             {/* Size Selection (for fashion items) */}
-            {product.category === 'Fashion' && (
+            {product.category === 'Pirate Attire' && (
               <div>
-                <h3 className="text-lg font-semibold mb-3">Size</h3>
+                <h3 className="text-lg font-bold mb-3 text-pirate-gold">⚔️ Size</h3>
                 <div className="flex space-x-2">
                   {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2 border rounded-lg font-medium transition-colors duration-200 ${
+                      className={`px-4 py-2 border-2 rounded-lg font-bold transition-all duration-200 ${
                         selectedSize === size
-                          ? 'border-primary-600 bg-primary-50 text-primary-600'
-                          : 'border-gray-300 hover:border-gray-400'
+                          ? 'border-pirate-gold bg-pirate-gold text-pirate-black'
+                          : 'border-pirate-cream text-pirate-cream hover:border-pirate-gold hover:text-pirate-gold'
                       }`}
                     >
                       {size}
@@ -192,19 +193,19 @@ const ProductDetailPage: React.FC = () => {
 
             {/* Quantity */}
             <div>
-              <h3 className="text-lg font-semibold mb-3">Quantity</h3>
+              <h3 className="text-lg font-bold mb-3 text-pirate-gold">💰 Quantity</h3>
               <div className="flex items-center space-x-4">
-                <div className="flex items-center border border-gray-300 rounded-lg">
+                <div className="flex items-center border-2 border-pirate-gold rounded-lg bg-pirate-black">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-2 hover:bg-gray-50 transition-colors duration-200"
+                    className="p-2 hover:bg-pirate-gold hover:text-pirate-black transition-colors duration-200 text-pirate-gold font-bold"
                   >
                     <Minus className="w-4 h-4" />
                   </button>
-                  <span className="px-4 py-2 font-medium">{quantity}</span>
+                  <span className="px-4 py-2 font-bold text-pirate-gold">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 hover:bg-gray-50 transition-colors duration-200"
+                    className="p-2 hover:bg-pirate-gold hover:text-pirate-black transition-colors duration-200 text-pirate-gold font-bold"
                   >
                     <Plus className="w-4 h-4" />
                   </button>
@@ -217,38 +218,38 @@ const ProductDetailPage: React.FC = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={!product.inStock}
-                className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                className="w-full btn-treasure disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 <ShoppingCart className="w-5 h-5 mr-2" />
-                Add to Cart
+                🏴‍☠️ Add to Loot Bag
               </button>
               
               <div className="flex space-x-4">
                 <button className="flex-1 btn-secondary flex items-center justify-center">
                   <Heart className="w-5 h-5 mr-2" />
-                  Add to Wishlist
+                  💖 Add to Wishlist
                 </button>
                 <button className="flex-1 btn-secondary flex items-center justify-center">
                   <Share2 className="w-5 h-5 mr-2" />
-                  Share
+                  🗣️ Share Treasure
                 </button>
               </div>
             </div>
 
             {/* Features */}
-            <div className="border-t border-gray-200 pt-6">
+            <div className="border-t-2 border-pirate-gold pt-6">
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
-                  <Truck className="w-5 h-5 text-primary-600" />
-                  <span className="text-gray-700">Free shipping on orders over $100</span>
+                  <Ship className="w-5 h-5 text-pirate-gold" />
+                  <span className="text-pirate-cream">🚢 Free ship delivery to all ports over 100 doubloons!</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <Shield className="w-5 h-5 text-primary-600" />
-                  <span className="text-gray-700">2-year warranty included</span>
+                  <Shield className="w-5 h-5 text-pirate-gold" />
+                  <span className="text-pirate-cream">🛡️ 2-year cursed protection included!</span>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <RotateCcw className="w-5 h-5 text-primary-600" />
-                  <span className="text-gray-700">30-day return policy</span>
+                  <RotateCcw className="w-5 h-5 text-pirate-gold" />
+                  <span className="text-pirate-cream">🔄 30-day curse-back guarantee!</span>
                 </div>
               </div>
             </div>
@@ -258,11 +259,11 @@ const ProductDetailPage: React.FC = () => {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div className="mt-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Products</h2>
+            <h2 className="text-3xl font-bold pirate-title mb-8">🏴‍☠️ Related Treasures 🏴‍☠️</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map((relatedProduct) => (
                 <Link key={relatedProduct.id} to={`/product/${relatedProduct.id}`}>
-                  <div className="card group">
+                  <div className="card-treasure group">
                     <div className="relative overflow-hidden">
                       <img 
                         src={relatedProduct.images[0]} 
@@ -270,17 +271,17 @@ const ProductDetailPage: React.FC = () => {
                         className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <div className="p-4">
-                      <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors duration-200">
+                    <div className="p-4 bg-gradient-to-br from-pirate-brown to-pirate-dark-brown">
+                      <h3 className="font-bold text-pirate-gold mb-2 group-hover:text-pirate-cream transition-colors duration-200">
                         {relatedProduct.name}
                       </h3>
                       <div className="flex items-center justify-between">
-                        <span className="text-lg font-bold text-gray-900">
+                        <span className="text-lg font-bold text-pirate-gold">
                           ${relatedProduct.price}
                         </span>
                         <div className="flex items-center">
-                          <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                          <span className="text-sm text-gray-600 ml-1">
+                          <Star className="w-4 h-4 text-pirate-gold fill-current" />
+                          <span className="text-sm text-pirate-cream ml-1">
                             {relatedProduct.rating}
                           </span>
                         </div>
